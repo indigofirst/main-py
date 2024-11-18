@@ -2,7 +2,7 @@ import telebot
 import random
 
 # Инициализация бота с использованием его токена
-bot = telebot.TeleBot("7910185627:AAHujjf9DRMthgQBbgd2vmm-Yby5JgSyaS4")
+bot = telebot.TeleBot("7910185627:AAHujjf9DRMthgQBbgd2vmm-Yby5Jg")
 
 def double_letter(s):
     return ''.join([c * 2 for c in s])
@@ -58,6 +58,14 @@ def handle_flip_coin(message):
 def flip_coin():
     flip = random.randint(0, 1)
     return "ОРЕЛ" if flip == 0 else "РЕШКА"
+
+# Мем
+@bot.message_handler(commands=['mem'])
+def send_mem(message):
+    images = ['papkiifaili/images/mem1.jpg', 'papkiifaili/images/mem2.jpg', 'papkiifaili/images/mem3.jpg']
+    selected_image = random.choice(images)
+    with open(selected_image, 'rb') as file:
+        bot.send_photo(message.chat.id, file)
 
 # Запуск бота
 bot.polling()
